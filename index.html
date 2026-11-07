@@ -64,6 +64,7 @@ body{
 
 /* ---------- print materials ---------- */
 .sp{position:absolute;left:calc(var(--ws)/-2);top:calc(var(--H)/-2);width:var(--ws);height:var(--H);
+  transform:rotateY(90deg) translateZ(calc(var(--ws)/2));
   transform:translateZ(calc(var(--d)/2));backface-visibility:hidden;border-radius:1.5px;overflow:hidden;color:#efe3c9;
   background:
     radial-gradient(85% 45% at 25% 12%, rgba(255,255,255,.07), transparent 62%),
@@ -108,7 +109,7 @@ body{
 .sp-sh{position:absolute;inset:0;background:#0b0704;opacity:var(--sh1,0);pointer-events:none;z-index:4}
 
 .cv{position:absolute;left:calc(var(--d)/-2);top:calc(var(--H)/-2);width:var(--d);height:calc(var(--d)*1.5);
-  transform:rotateY(90deg) translateZ(calc(var(--ws)/2));backface-visibility:hidden;
+  backface-visibility:hidden;
   box-shadow:0 46px 70px -34px rgba(22,14,8,.75), 0 8px 18px -10px rgba(22,14,8,.35)}
 .cv-sh{position:absolute;inset:0;background:#0b0704;opacity:var(--sh2,0);pointer-events:none;z-index:9}
 
@@ -541,8 +542,9 @@ function layout(){
     lv = lifts[t.v];
     var ty = -o*0.025*H - lv*0.045*H;
     var tz = o*0.20*H;
+    var rot = (t.i === active) ? (tiltY*o) : (90*(1-o)*(r < 0 ? -1 : 1) + tiltY*o);
     t.el.style.transform = 'translate3d('+x.toFixed(2)+'px,'+ty.toFixed(2)+'px,'+tz.toFixed(2)+'px)'
-      + ' rotateZ('+(-4.5*o).toFixed(2)+'deg) rotateX('+(tiltX*o).toFixed(2)+'deg) rotateY('+((-84*o+tiltY*o)).toFixed(2)+'deg)';
+      + ' rotateZ('+(-4.5*o).toFixed(2)+'deg) rotateX('+(tiltX*o).toFixed(2)+'deg) rotateY('+rot.toFixed(2)+'deg)';
     t.el.style.zIndex = String(Math.round(100 - Math.abs(r)*4));
     t.cv.style.visibility = (o < 0.015 ? 'hidden' : 'visible');
     t.el.style.setProperty('--sh1', (o*0.55).toFixed(3));

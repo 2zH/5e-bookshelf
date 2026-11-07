@@ -527,6 +527,7 @@ function layout(){
     var r = mod(t.v - s, TOTAL);
     t.r = r;
     var o = (t.i === active) ? 1 : smoothstep(clamp(1-Math.abs(r),0,1));
+    t.el.setAttribute('data-dbg', t.i + '|' + active + '|' + o.toFixed(3) + '|' + r.toFixed(2) + '|' + (o < 0.015 ? 'hidden' : 'visible'));
     var x = r*(ws+gap) + (d-ws+1.6*gap)*B(r);
     if (Math.abs(x) > W/2 + d*1.8 || Math.abs(r) > 14){
       if (t.el.style.visibility !== 'hidden') t.el.style.visibility = 'hidden';

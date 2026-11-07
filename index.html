@@ -545,7 +545,7 @@ function layout(){
     t.el.style.transform = 'translate3d('+x.toFixed(2)+'px,'+ty.toFixed(2)+'px,'+tz.toFixed(2)+'px)'
       + ' rotateZ('+(-4.5*o).toFixed(2)+'deg) rotateX('+(tiltX*o).toFixed(2)+'deg) rotateY('+rot.toFixed(2)+'deg)';
     t.el.style.zIndex = String(Math.round(100 - Math.abs(r)*4));
-    t.cv.style.visibility = (o < 0.015 ? 'hidden' : 'visible');
+    t.cv.style.visibility = (t.i === active) ? 'visible' : 'hidden';
     t.sp.style.visibility = (t.i === active) ? 'hidden' : 'visible';
     t.el.style.setProperty('--sh1', (o*0.55).toFixed(3));
     t.el.style.setProperty('--sh2', ((1-o)*0.5).toFixed(3));

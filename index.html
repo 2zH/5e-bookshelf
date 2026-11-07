@@ -580,6 +580,7 @@ function setCaption(dir){
 
 function frame(now){
   var dt = Math.min((now-last)/1000, 0.05); last = now;
+  if (!dragging) T = Math.round(T);
   var k = dragging ? 18 : 5.2;
   s += (T-s)*(1-Math.exp(-k*dt));
   if (Math.abs(T-s) < 1e-4) s = T;

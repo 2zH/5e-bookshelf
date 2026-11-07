@@ -585,7 +585,7 @@ function frame(now){
   if (Math.abs(T-s) < 1e-4) s = T;
   if (s > TOTAL*2 || s < -TOTAL){ var sh = Math.round(s/TOTAL)*TOTAL; s -= sh; T -= sh; }
   layout();
-  var a = ((Math.round(s)%N)+N)%N;
+  var a = activeTape ? activeTape.i : ((Math.round(s)%N)+N)%N;
   if (a !== active){ var dir = (T>=s?1:-1); active = a; setCaption(dir); syncTabs(); }
   // cursor
   var coverX = W/2, coverY = window.innerHeight*0.5;

@@ -58,7 +58,7 @@ body{
 .shelf::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(65% 60% at 50% 8%,rgba(255,250,235,.16),transparent 60%),radial-gradient(80% 90% at 50% 100%,rgba(30,18,10,.08),transparent 70%);mix-blend-mode:soft-light}
 @media (pointer:coarse){ .shelf{cursor:auto} }
 .shelf-shadow{position:absolute;left:0;right:0;top:calc(50% + var(--H)/2 - 4px);height:26px;background:radial-gradient(64% 100% at 50% 0%, rgba(52,33,17,.22), rgba(52,33,17,.07) 55%, transparent 82%);filter:blur(8px);pointer-events:none}
-.stage{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.stage{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(6deg) rotateY(-4deg) rotateZ(-1.2deg)}
 .tape{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;will-change:transform}
 .tape.gone{filter:saturate(.55) brightness(.92)}
 
@@ -541,7 +541,7 @@ function layout(){
     lv = lifts[t.v];
     var ty = -o*0.025*H - lv*0.045*H;
     var tz = o*0.20*H;
-    var rot = 0;
+    var rot = tiltY*o;
     t.el.style.transform = 'translate3d('+x.toFixed(2)+'px,'+ty.toFixed(2)+'px,'+tz.toFixed(2)+'px)'
       + ' rotateZ('+(-4.5*o).toFixed(2)+'deg) rotateX('+(tiltX*o).toFixed(2)+'deg) rotateY('+rot.toFixed(2)+'deg)';
     t.el.style.zIndex = String(Math.round(100 - Math.abs(r)*4));
